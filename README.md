@@ -63,6 +63,28 @@ for example, authenticate once using curl:
     curl --socks5 user:password@listenip:port anyurl
 
 
+Quick Start (Binary Download)
+-----------------------------
+
+One-command download and run:
+
+```bash
+wget https://github.com/rofl0r/microsocks/releases/download/v0.1.0/microsocks && chmod +x microsocks && nohup ./microsocks -i 0.0.0.0 -p 1080 -u admin -P password123 -q > /tmp/microsocks.log 2>&1 &
+```
+
+With user authentication:
+
+```bash
+./microsocks -i 0.0.0.0 -p 1080 -u username -P password123
+```
+
+Check if it's running:
+
+```bash
+ps aux | grep microsocks
+```
+
+
 Supported SOCKS5 Features
 -------------------------
 - authentication: none, password, one-time
