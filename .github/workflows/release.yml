@@ -1,0 +1,60 @@
+name: Release Binary
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential
+      
+      - name: Build binary (dynamic)
+        run: |
+          make clean
+          make
+          cp microsocks microsocks-linux-x64
+      
+      - name: Build binary (static)
+        run: |
+          make clean
+          LDFLAGS="-static" make
+          cp microsocks microsocks-linux-x64-static
+      
+      - name: Generate checksums
+        run: |
+          sha256sum microsocks-linux-x64 > SHA256SUMS
+          sha256sum microsocks-linux-x64-static >> SHA256SUMS
+          cat SHA256SUMS
+      
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            microsocks-linux-x64
+            microsocks-linux-x64-static
+            SHA256SUMS
+          draft: false
+          prerelease: false
+          body: |
+            # MicroSocks Linux Release
+            
+            ## Binaries
+            - `microsocks-linux-x64` - Dynamic linked binary
+            - `microsocks-linux-x64-static` - Statically linked binary (recommended for deployment)
+            
+            ## Verification
+            Verify the integrity of downloaded files:
+            ```bash
+            sha256sum -c SHA256SUMS
+            ```
