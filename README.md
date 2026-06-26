@@ -69,7 +69,7 @@ Quick Start (Binary Download)
 One-command download and run:
 
 ```bash
-wget https://github.com/rofl0r/microsocks/releases/download/v0.1.0/microsocks && chmod +x microsocks && nohup ./microsocks -i 0.0.0.0 -p 1080 -u admin -P password123 -q > /tmp/microsocks.log 2>&1 &
+wget https://github.com/kyeo-hub/microsocks/releases/download/v0.2.0/microsocks && chmod +x microsocks && nohup ./microsocks -i 0.0.0.0 -p 1080 -u admin -P password123 -q > /tmp/microsocks.log 2>&1 &
 ```
 
 With user authentication:

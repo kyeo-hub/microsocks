@@ -44,7 +44,7 @@ jobs:
             
             ## Quick Start
             ```bash
-            wget https://github.com/rofl0r/microsocks/releases/download/${{ github.ref_name }}/microsocks
+            wget https://github.com/kyeo-hub/microsocks/releases/download/${{ github.ref_name }}/microsocks
             chmod +x microsocks
             ./microsocks -i 0.0.0.0 -p 1080 -u user -P pass
             ```
